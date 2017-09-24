@@ -11,6 +11,15 @@ class Api::ComicsController < ApplicationController
     end
   end
 
+  def show
+    comic = FetchComic.perform(params[:id])
+    if comic.success?
+      respond_with comic.result, :represent_with => SingleComicRepresenter
+    else
+      render json: { success: false, error: 'Failed to find comic' }, status: :not_found
+    end
+  end
+
   def upvotes
     up_votes = FetchUpVotes.perform
     respond_with up_votes.result, :represent_items_with => UpVotesRepresenter

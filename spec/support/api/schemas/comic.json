@@ -1,0 +1,95 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "title": {
+      "type": "string"
+    },
+    "issueNumber": {
+      "type": "integer"
+    },
+    "description": {
+      "type": "string"
+    },
+    "isbn": {
+      "type": "string"
+    },
+    "characters": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "resourceURI": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "resourceURI",
+            "name",
+            "role"
+          ]
+        },
+        "required": [
+          "items"
+        ]
+      }
+    },
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "extension": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "extension"
+        ]
+      }
+    },
+    "creators": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "resourceURI": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "role": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "resourceURI",
+            "name",
+            "role"
+          ]
+        },
+        "required": [
+          "items"
+        ]
+      }
+    }
+  },
+  "required": [
+    "id",
+    "title",
+    "issueNumber",
+    "description"
+  ]
+}
