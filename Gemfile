@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'pg'
 # Use Puma as the app server
-gem 'puma', '~> 3.0'
+gem 'puma', '~> 3.7.1'
 gem 'dotenv-rails', '~> 2.1'
 gem 'responders'
 gem 'roar-rails'
@@ -20,8 +20,7 @@ gem 'marvel_api', git: 'https://github.com/pettomartino/marvel'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem 'rack-cors'
+gem 'rack-cors'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -41,7 +40,7 @@ group :test do
   gem 'json_matchers', '~> 0.5'
   gem 'rack-test', '~> 0.6'
   gem 'vcr', '~> 3.0', '>= 3.0.1'
-  gem 'webmock', '~> 1.24', '>= 1.24.2'
+  gem 'webmock', '~> 3.0.1', '>= 3.0.1'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

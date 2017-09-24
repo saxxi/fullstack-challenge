@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const ROOT_URL = '';
+const ROOT_URL = 'http://localhost:3000';
 
 export const FETCH_COVER   = 'FETCH_COVER';
 export const SEARCH_COMIC  = 'SEARCH_COMIC';
