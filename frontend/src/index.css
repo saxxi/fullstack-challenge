@@ -3,3 +3,27 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.ReactModal__Overlay {
+  z-index: 2
+}
+
+.ReactModalPortal {
+  text-align: center;
+}
+
+.ReactModalPortal .close {
+    color: #aaa;
+    position: fixed;
+    font-weight: bold;
+    font-size: 54px;
+    top: 5px;
+    right: 32px;
+}
+
+.ReactModalPortal .close:hover,
+.ReactModalPortal .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}

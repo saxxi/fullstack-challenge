@@ -48,6 +48,11 @@ class ComicList extends Component {
     return this.state.upvoted.indexOf(comic_id) > -1
   }
 
+  openCover(comic_id) {
+    this.props.openCover(comic_id);
+    this.setState({ openCover: comic_id });
+  }
+
   upvote(comic_id) {
     this.props.upVote(comic_id);
     this.setState({ upvoted: [comic_id, ...this.state.upvoted] });
@@ -59,6 +64,7 @@ class ComicList extends Component {
       return (
         <Cover
           key={comic.id}
+          openCover={ this.openCover.bind(this, comic.id) }
           upVote={ this.upvote.bind(this, comic.id) }
           upVoted={ this.checkUpvoted.call(this, comic.id) }
           comicData={ comic }

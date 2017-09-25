@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const ROOT_URL = 'http://localhost:3000';
+const ROOT_URL = '';
 
 export const FETCH_COVER   = 'FETCH_COVER';
 export const SEARCH_COMIC  = 'SEARCH_COMIC';
@@ -8,6 +8,7 @@ export const LOADING_START = 'LOADING_START';
 export const LOADING_END   = 'LOADING_END';
 export const UPVOTE        = 'UPVOTE';
 export const FETCH_UPVOTES  = 'FETCH_UPVOTES';
+export const OPEN_COVER  = 'OPEN_COVER';
 
 export const actions = {
   fetchComics(term, page) {
@@ -21,6 +22,25 @@ export const actions = {
           dispatch({type: LOADING_END })
           dispatch({type: FETCH_COVER, payload: response});
         })
+    }
+  },
+
+  openCover(comic_id) {
+    const url = `${ROOT_URL}/api/comics/${comic_id}`;
+
+    return dispatch => {
+      dispatch({type: LOADING_START });
+      axios.get(url)
+        .then(response => {
+          dispatch({type: LOADING_END });
+          dispatch({type: OPEN_COVER, payload: response});
+        })
+    }
+  },
+
+  closeCover() {
+    return dispatch => {
+      dispatch({type: OPEN_COVER, payload: null});
     }
   },
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './Cover.css';
 import _ from 'lodash';
 
@@ -6,12 +7,15 @@ export default class Cover extends Component {
     constructor(props) {
       super(props);
       this.state = { image_size: this.imageSize(window.innerWidth), mouseOver: false }
+      this.props.openCover.bind(this)
+      this.props.upVote.bind(this)
     }
 
     static propTypes = {
-      comicData: React.PropTypes.object.isRequired,
-      upVote: React.PropTypes.func.isRequired,
-      upVoted: React.PropTypes.bool.isRequired
+      comicData: PropTypes.object.isRequired,
+      openCover: PropTypes.func.isRequired,
+      upVote: PropTypes.func.isRequired,
+      upVoted: PropTypes.bool.isRequired
     }
 
     handleResize() {
@@ -30,6 +34,16 @@ export default class Cover extends Component {
       return (width < 768) ? 'portrait_uncanny' : 'portrait_fantastic' ;
     }
 
+    coverClick(evt) {
+      switch (evt.target.dataset.type) {
+        case 'cover-heart':
+          this.props.upVote()
+          break;
+        default:
+          this.props.openCover()
+      }
+    }
+
     showDetails(show) {
       this.setState({ mouseOver: show })
     }
@@ -43,7 +57,7 @@ export default class Cover extends Component {
       if(!this.props.upVoted) { return null; }
 
       return (<div className="cover-upvoted">
-          <div className="cover-heart-on"></div>
+          <div data-type="cover-heart" className="cover-heart-on"></div>
         </div>)
     }
 
@@ -52,7 +66,7 @@ export default class Cover extends Component {
 
       return (
         <div className="cover-detail">
-          <div className="cover-heart" onClick={ this.props.upVote.bind(this) }></div>
+          <div data-type="cover-heart" className="cover-heart"></div>
           <div className="cover-footer">
             <div className="cover-title">
               { this.props.comicData.title }
@@ -73,6 +87,7 @@ export default class Cover extends Component {
     render() {
       return (
         <div className="pure-u-23-24 pure-u-md-1-4 pure-u-lg-1-5"
+          onClick={ this.coverClick.bind(this) }
           onMouseEnter={ this.showDetails.bind(this, true) }
           onMouseLeave={ this.showDetails.bind(this, false) }>
           <div className="cover">
